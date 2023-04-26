@@ -63,3 +63,22 @@ export const getAdminStats = asyncError(
         })
     }
 )
+
+export const role = asyncError(
+    async (req, res, next) => {
+        const id = req.params.id;
+        const user = await User.findOne({ _id: id });
+        if (user.role === "admin") {
+            user.role = "user";
+        }
+        else {
+            user.role = "admin";
+        }
+        await user.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Role Updated",
+        })
+    }
+)

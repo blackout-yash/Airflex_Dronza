@@ -7,6 +7,7 @@ import userRoute from './routes/user.js'
 import cookieParser from 'cookie-parser'
 import { errorMiddleware } from './middlewares/errorMiddleware.js'
 import orderRoute from './routes/order.js'
+import message from './routes/message.js'
 
 const app = express()
 export default app
@@ -35,23 +36,24 @@ app.use(session({
     //     httpOnly: process.env.NODE_ENV === "development" ? false : true,
     //     sameSite: process.env.NODE_ENV === "development" ? false : true
     // }
-}))
+}));
 
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.use(passport.authenticate('session'))
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.authenticate('session'));
+app.use(passport.initialize());
+app.use(passport.session());
 
-connectPassport()
+connectPassport();
 
-app.use('/api', userRoute)
+app.use('/api', userRoute);
 
 // Order
 app.use(urlencoded({
     extended: true
-}))
+}));
 
-app.use('/api', orderRoute)
+app.use('/api', orderRoute);
+app.use('/api', message);
 
-app.use(errorMiddleware)
+app.use(errorMiddleware);
