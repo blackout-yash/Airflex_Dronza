@@ -13,10 +13,6 @@ router.get('/login',
     passport.authenticate('google', {
         successRedirect: "http://localhost:3000"
     })
-    // , (req, res) => {
-    //     res.redirect(process.env.FRONTEND_URL);
-    //     // res.redirect("http://localhost:4000/api/me");
-    // }
 )
 
 router.get('/me', isAuthenticated, myProfile)
