@@ -18,20 +18,21 @@ dotenv.config({
 })
 app.use(express.json());
 
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (origin) {
-            callback(null, { origin });
-        } else {
-            callback(null, { origin: '*' });
-        }
-    },
-    // methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
-    // allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
-    credentials: true
-};
+// const corsOptions = {
+//     origin: (origin, callback) => {
+//         if (origin) {
+//             callback(null, { origin });
+//         } else {
+//             callback(null, { origin: '*' });
+//         }
+//     },
+//     // methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
+//     // allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+//     credentials: true
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+
 
 // app.use(function (req, res, next) {
 //     if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
@@ -42,14 +43,21 @@ app.use(cors(corsOptions));
 //     next();
 // });
 
+app.use(cors({
+    credentials: true,
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET, POST, OPTIONS, PUT, DELETE"]
+}));
+app.enable("trust proxy");
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        // httpOnly: true,
-        // sameSite: 'none',
-        // secure: true
+        secure: process.env.NODE_ENV === "development" ? false : true,
+        httpOnly: process.env.NODE_ENV === "development" ? false : true,
+        sameSite: process.env.NODE_ENV === "development" ? false : "none"
     }
 }));
 
