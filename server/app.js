@@ -18,21 +18,21 @@ dotenv.config({
 })
 app.use(express.json());
 
-// app.use(cors({
-//     credentials: true,
-//     origin: "http://localhost:3000",
-//     methods: ["GET", "POST", "PUT", "DELETE"]
-// }));
-// app.enable("trust proxy");
+app.use(cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+    // methods: ["GET", "POST", "PUT", "DELETE"]
+}));
+app.enable("trust proxy");
 
-app.use(function (req, res, next) {
-    if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-    else res.setHeader('Access-Control-Allow-Origin', "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-    next();
-});
+// app.use(function (req, res, next) {
+//     if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+//     else res.setHeader('Access-Control-Allow-Origin', "*");
+//     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.setHeader('Access-Control-Allow-Credentials', 'true');
+//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+//     next();
+// });
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
