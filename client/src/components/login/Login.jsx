@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion'
 import { FcGoogle } from 'react-icons/fc'
 import { server } from '../../redux/store'
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from 'react';
 
 const Login = () => {
+    const [show, setShow] = useState(true);
     const loginHandler = () => {
         window.open(`${server}/googlelogin`, "_self");
     }
@@ -12,12 +15,21 @@ const Login = () => {
         animate: { y: 0 }
     }
 
+    const onChange = () => {
+        setShow(false);
+    }
+
     return (
         <section className="login">
-            <motion.button {...options} onClick={loginHandler}>
-                Login with Google
-                <FcGoogle />
-            </motion.button>
+            {
+                show ? <ReCAPTCHA
+                    sitekey="6LdwaMAlAAAAAOEXb-XZ_n5dEsAAXyJzULMfWEwt"
+                    onChange={onChange} /> :
+                    <motion.button {...options} onClick={loginHandler}>
+                        Login with Google
+                        <FcGoogle />
+                    </motion.button>
+            }
         </section>
     )
 }

@@ -64,7 +64,6 @@ export const paymentVerification = asyncError(
             .digest('hex')
 
         const isAuthentic = expectedSignature === razorpay_signature
-        // const isAuthentic = true
 
         if (isAuthentic) {
             const payment = await Payment.create({
@@ -75,7 +74,6 @@ export const paymentVerification = asyncError(
 
             await Order.create({
                 ...orderOptions,
-                // user: "req.user._id",
                 paidAt: new Date(Date.now()),
                 paymentInfo: payment._id
             })

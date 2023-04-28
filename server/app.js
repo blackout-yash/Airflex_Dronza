@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser'
 import { errorMiddleware } from './middlewares/errorMiddleware.js'
 import orderRoute from './routes/order.js'
 import message from './routes/message.js'
+import cors from "cors";
 
 const app = express()
 export default app
@@ -15,18 +16,32 @@ export default app
 dotenv.config({
     path: './config/config.env'
 })
-app.use(express.json())
+app.use(express.json());
 
-app.use(function (req, res, next) {
-    if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-    else res.setHeader('Access-Control-Allow-Origin', "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-    next();
-});
+const corsOptions = {
+    origin: (origin, callback) => {
+        if (origin) {
+            callback(null, { origin });
+        } else {
+            callback(null, { origin: '*' });
+        }
+    },
+    // methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
+    // allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
+    credentials: true
+};
 
-// Google Authentication
+app.use(cors(corsOptions));
+
+// app.use(function (req, res, next) {
+//     if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+//     else res.setHeader('Access-Control-Allow-Origin', "*");
+//     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.setHeader('Access-Control-Allow-Credentials', 'true');
+//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+//     next();
+// });
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -48,7 +63,6 @@ connectPassport();
 
 app.use('/api', userRoute);
 
-// Order
 app.use(urlencoded({
     extended: true
 }));

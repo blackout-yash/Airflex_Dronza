@@ -1,5 +1,3 @@
-// Google Authentication
-
 import errorHandler from '../utils/errorHandler.js'
 
 export const isAuthenticated = (req, res, next) => {
