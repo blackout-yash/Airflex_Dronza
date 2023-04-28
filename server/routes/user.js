@@ -12,6 +12,7 @@ router.get('/googlelogin', passport.authenticate('google', {
 router.get('/login',
     passport.authenticate('google'), (req, res) => {
         res.redirect(process.env.FRONTEND_URL);
+        // res.redirect("http://localhost:4000/api/me");
     }
 )
 
