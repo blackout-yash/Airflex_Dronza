@@ -48,7 +48,7 @@ app.use(function (req, res, next) {
 //     origin: "http://localhost:3000",
 //     methods: ["GET, POST, OPTIONS, PUT, DELETE"]
 // }));
-app.enable("trust proxy");
+// app.enable("trust proxy");
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
