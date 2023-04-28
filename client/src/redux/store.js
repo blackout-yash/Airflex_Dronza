@@ -19,4 +19,5 @@ const store = configureStore({
 export default store;
 
 // export const server = "https://airflex.vercel.app/api";
-export const server = "http://localhost:4000/api";
+// export const server = "http://localhost:4000/api";
+export const server = "https://airflex.onrender.com/api";
