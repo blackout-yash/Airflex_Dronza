@@ -86,10 +86,10 @@ function App() {
           </ProtectedRoute>
         } />
 
-        <Route path='/me' element={<Profile />} />
+        {/* <Route path='/me' element={<Profile />} /> */}
         <Route element={<ProtectedRoute
           isAuthenticated={isAuthenticated} />}>
-          {/* <Route path='/me' element={<Profile />} /> */}
+          <Route path='/me' element={<Profile />} />
           <Route path='/shipping' element={<Shipping />} />
           <Route path='/confirmorder' element={<ConfirmOrder />} />
           <Route path='/myorders' element={<MyOrders />} />

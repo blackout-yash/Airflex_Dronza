@@ -18,37 +18,12 @@ dotenv.config({
 })
 app.use(express.json());
 
-// const corsOptions = {
-//     origin: (origin, callback) => {
-//         if (origin) {
-//             callback(null, { origin });
-//         } else {
-//             callback(null, { origin: '*' });
-//         }
-//     },
-//     // methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
-//     // allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
-//     credentials: true
-// };
-
-// app.use(cors(corsOptions));
-
-
-app.use(function (req, res, next) {
-    if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-    else res.setHeader('Access-Control-Allow-Origin', "*");
-    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-    next();
-});
-
-// app.use(cors({
-//     credentials: true,
-//     origin: "http://localhost:3000",
-//     methods: ["GET, POST, OPTIONS, PUT, DELETE"]
-// }));
-// app.enable("trust proxy");
+app.use(cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+    methods: ["GET, POST, OPTIONS, PUT, DELETE"]
+}));
+app.enable("trust proxy");
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
