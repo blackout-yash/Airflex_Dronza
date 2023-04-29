@@ -19,7 +19,7 @@ dotenv.config({
 app.use(express.json());
 
 app.use(cors({
-    // credentials: true,
+    credentials: true,
     origin: "http://localhost:3000",
     // methods: ["GET", "POST", "PUT", "DELETE"]
 }));
