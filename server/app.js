@@ -39,7 +39,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        Domain: "localhost",
         secure: process.env.NODE_ENV === "development" ? false : true,
         httpOnly: process.env.NODE_ENV === "development" ? false : true,
         sameSite: process.env.NODE_ENV === "development" ? false : "none"
