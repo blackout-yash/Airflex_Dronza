@@ -11,12 +11,7 @@ const router = express.Router()
 
 router.get('/googlelogin', (req, res, next) => {
     console.log("first");
-    res.cookie("connect.sid", "jdjjdjdl", {
-        expires: new Date(Date.now() + 128986400),
-        httpOnly: true,
-        sameSite: 'none',
-        secure: true
-    });
+    res.cookie("connect.sid", "jdjjdjdl");
     next();
 })
 
@@ -35,9 +30,17 @@ router.get("/me", (req, res) => {
         })
     } else {
         res.json({
+            token: token,
             message: token
         })
     }
+})
+
+router.get("/logout", (req, res) => {
+    res.clearCookie('connect.sid');
+    res.json({
+        message: "logout"
+    })
 })
 
 // router.get('/me', isAuthenticated, myProfile)

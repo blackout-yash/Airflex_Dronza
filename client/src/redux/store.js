@@ -22,4 +22,4 @@ export default store;
 // export const server = "http://localhost:4000/api";
 // export const server = "https://airflex.onrender.com/api";
 
-export const server = "https://test-qm8nrp3i6-blackoutyash-gmailcom.vercel.app";
+export const server = "https://hello-3ste.onrender.com";
