@@ -9,17 +9,22 @@ router.get('/googlelogin', passport.authenticate('google', {
     scope: ['profile']
 }))
 
-// router.get('/googlelogin', (req, res, next) => {
-//     console.log("first");
-//     res.cookie("connect.sid", "jdjjdjdl");
-//     next();
-// })
+router.get('/googlelogin', (req, res, next) => {
+    console.log("first");
+    res.cookie("connect.sid", "jdjjdjdl", {
+        expires: new Date(Date.now() + 128986400),
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true
+    });
+    next();
+})
 
-router.get('/login',
-    passport.authenticate('google', {
-        successRedirect: "http://localhost:3000"
-    })
-)
+// router.get('/login',
+//     passport.authenticate('google', {
+//         successRedirect: "http://localhost:3000"
+//     })
+// )
 
 // router.get("/me", (req, res) => {
 //     const token = req.cookies['connect.sid'];
