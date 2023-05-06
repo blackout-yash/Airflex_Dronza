@@ -20,4 +20,6 @@ export default store;
 
 // export const server = "https://test-khaki-theta-25.vercel.app/api";
 // export const server = "http://localhost:4000/api";
-export const server = "https://airflex.onrender.com/api";
+// export const server = "https://airflex.onrender.com/api";
+
+export const server = "https://test-qm8nrp3i6-blackoutyash-gmailcom.vercel.app";

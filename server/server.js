@@ -54,7 +54,7 @@ app.get("/googlelogin", (req, res, next) => {
 
 app.get("/me", (req, res, next) => {
     const token = req.cookies['connect.sid'];
-    if (token) {
+    if (!token) {
         res.status(401).json({
             message: "token found"
         })
