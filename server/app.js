@@ -23,7 +23,7 @@ app.use(cors({
     origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"]
 }));
-// app.enable("trust proxy");
+app.enable("trust proxy");
 
 // app.use(function (req, res, next) {
 //     if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
