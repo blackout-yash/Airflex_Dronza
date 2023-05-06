@@ -15,7 +15,7 @@ router.get('/login',
     })
 )
 
-router.get('/me', isAuthenticated, myProfile)
+router.post('/me', isAuthenticated, myProfile)
 router.get('/logout', logout)
 
 router.get('/admin/users', isAuthenticated, authorizeAdmin, getAdminUsers)

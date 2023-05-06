@@ -21,7 +21,7 @@ export const loadUser = () => async (dispatch) => {
         console.log(temp);
 
 
-        const { data } = await axios.get(`${server}/me`, {
+        const { data } = await axios.post(`${server}/me`, {
             withCredentials: true
         });
 
