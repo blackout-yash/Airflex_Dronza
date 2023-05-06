@@ -23,7 +23,7 @@ app.use(cors({
     origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"]
 }));
-app.enable("trust proxy");
+// app.enable("trust proxy");
 
 // app.use(function (req, res, next) {
 //     if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
@@ -38,12 +38,12 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-        secure: process.env.NODE_ENV === "development" ? false : true,
-        httpOnly: process.env.NODE_ENV === "development" ? false : true,
-        sameSite: process.env.NODE_ENV === "development" ? false : "none",
-        domain: "test-khaki-theta-25.vercel.app"
-    }
+    // cookie: {
+    //     secure: process.env.NODE_ENV === "development" ? false : true,
+    //     httpOnly: process.env.NODE_ENV === "development" ? false : true,
+    //     sameSite: process.env.NODE_ENV === "development" ? false : "none",
+    //     domain: "test-khaki-theta-25.vercel.app"
+    // }
 }));
 
 
