@@ -8,20 +8,20 @@ export const loadUser = () => async (dispatch) => {
             type: "loadUserRequest"
         });
 
-        const res = await fetch(`${server}/me`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: 'include',
-            // body: JSON.stringify({ email, password })
-        })
+        // const res = await fetch(`${server}/me`, {
+        //     method: "GET",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     credentials: 'include',
+        //     // body: JSON.stringify({ email, password })
+        // })
+        // 
+        // const temp = await res.json();
+        // console.log(temp);
 
-        const temp = await res.json();
-        console.log(temp);
 
-
-        const { data } = await axios.post(`${server}/me`, {
+        const { data } = await axios.get(`${server}/me`, {
             withCredentials: true
         });
 
