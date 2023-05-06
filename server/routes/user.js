@@ -28,6 +28,9 @@ router.get('/googlelogin', (req, res, next) => {
 
 router.get("/me", (req, res) => {
     const token = req.cookies['connect.sid'];
+    if (!token) {
+        return next(new errorHandler('Not logged in', 401))
+    }
     res.json({
         message: token
     })
