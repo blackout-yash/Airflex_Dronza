@@ -12,7 +12,7 @@ import cors from "cors";
 
 const app = express()
 export default app
-
+app.use(cookieParser());
 dotenv.config({
     path: './config/config.env'
 })
@@ -42,11 +42,10 @@ app.use(session({
         secure: process.env.NODE_ENV === "development" ? false : true,
         httpOnly: process.env.NODE_ENV === "development" ? false : true,
         sameSite: process.env.NODE_ENV === "development" ? false : "none",
-        domain: ".test-khaki-theta-25.vercel.app"
+        domain: "test-khaki-theta-25.vercel.app"
     }
 }));
 
-app.use(cookieParser());
 
 app.use(passport.authenticate('session'));
 app.use(passport.initialize());
