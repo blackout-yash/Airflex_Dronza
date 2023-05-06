@@ -10,7 +10,7 @@ import orderRoute from './routes/order.js'
 import message from './routes/message.js'
 import cors from "cors";
 
-const app = express()
+const app = express();
 export default app
 app.use(cookieParser());
 dotenv.config({
