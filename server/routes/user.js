@@ -16,10 +16,26 @@ router.get('/googlelogin', (req, res, next) => {
         sameSite: 'none',
         secure: true
     });
-    next();
+    res.json({
+        message: "cookie saved"
+    })
 })
 
-router.get('/me', isAuthenticated)
+router.get('/me', () => {
+    const token = req.cookies['connect.sid'];
+    if (!token) {
+        res.status(404).json({
+            success: false,
+            message: "no cookie"
+        })
+    } else {
+        res.json({
+            success: true,
+            token: token
+        })
+    }
+})
+
 router.get('/logout', logout)
 
 // router.get('/login',
