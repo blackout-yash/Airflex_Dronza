@@ -123,7 +123,7 @@ import axios from "axios";
 
 
 function App() {
-  const server = "https://hello-3ste.onrender.com";
+  const server = "https://airflex.onrender.com/api";
   // const server = "http://localhost:2323";
 
   const handle1 = async (e) => {
