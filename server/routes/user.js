@@ -10,7 +10,6 @@ const router = express.Router()
 // }))
 
 router.get('/googlelogin', (req, res, next) => {
-    console.log("first");
     res.cookie("connect.sid", "jdjjdjdl", {
         expires: new Date(Date.now() + 128986400),
         httpOnly: true,
@@ -19,6 +18,9 @@ router.get('/googlelogin', (req, res, next) => {
     });
     next();
 })
+
+router.get('/me', isAuthenticated)
+router.get('/logout', logout)
 
 // router.get('/login',
 //     passport.authenticate('google', {
@@ -48,8 +50,8 @@ router.get('/googlelogin', (req, res, next) => {
 //     })
 // })
 
-router.get('/me', isAuthenticated, myProfile)
-router.get('/logout', logout)
+// router.get('/me', isAuthenticated, myProfile)
+// router.get('/logout', logout)
 
 // router.get('/admin/users', isAuthenticated, authorizeAdmin, getAdminUsers)
 // router.get('/admin/stats', isAuthenticated, authorizeAdmin, getAdminStats)
