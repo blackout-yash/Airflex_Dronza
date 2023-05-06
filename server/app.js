@@ -55,11 +55,11 @@ connectPassport();
 
 app.use('/api', userRoute);
 
-app.use(urlencoded({
-    extended: true
-}));
+// app.use(urlencoded({
+//     extended: true
+// }));
 
-app.use('/api', orderRoute);
-app.use('/api', message);
+// app.use('/api', orderRoute);
+// app.use('/api', message);
 
 app.use(errorMiddleware);

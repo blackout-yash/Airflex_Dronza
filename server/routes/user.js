@@ -20,17 +20,24 @@ router.get('/googlelogin', (req, res, next) => {
     next();
 })
 
-router.get('/login',
-    passport.authenticate('google', {
-        successRedirect: "http://localhost:3000"
+// router.get('/login',
+//     passport.authenticate('google', {
+//         successRedirect: "http://localhost:3000"
+//     })
+// )
+
+router.get("/me", (req, res) => {
+    const token = req.cookies['connect.sid'];
+    res.json({
+        message: token
     })
-)
+})
 
-router.get('/me', isAuthenticated, myProfile)
-router.get('/logout', logout)
+// router.get('/me', isAuthenticated, myProfile)
+// router.get('/logout', logout)
 
-router.get('/admin/users', isAuthenticated, authorizeAdmin, getAdminUsers)
-router.get('/admin/stats', isAuthenticated, authorizeAdmin, getAdminStats)
-router.get('/admin/role/:id', isAuthenticated, authorizeAdmin, role)
+// router.get('/admin/users', isAuthenticated, authorizeAdmin, getAdminUsers)
+// router.get('/admin/stats', isAuthenticated, authorizeAdmin, getAdminStats)
+// router.get('/admin/role/:id', isAuthenticated, authorizeAdmin, role)
 
 export default router 
