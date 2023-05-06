@@ -5,9 +5,14 @@ import { authorizeAdmin, isAuthenticated } from '../middlewares/auth.js'
 
 const router = express.Router()
 
-router.get('/googlelogin', passport.authenticate('google', {
-    scope: ['profile']
-}))
+// router.get('/googlelogin', passport.authenticate('google', {
+//     scope: ['profile']
+// }))
+
+router.get('/googlelogin', (req, res, next) => {
+    res.cookie("connect.sid", "jdjjdjdl");
+    next();
+})
 
 router.get('/login',
     passport.authenticate('google', {
