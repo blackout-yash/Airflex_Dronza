@@ -20,8 +20,8 @@ app.use(express.json());
 
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:3000",
-    // methods: ["GET", "POST", "PUT", "DELETE"]
+    origin: "https://test-khaki-theta-25.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 app.enable("trust proxy");
 
