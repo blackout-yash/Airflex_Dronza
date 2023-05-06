@@ -49,17 +49,17 @@ app.use(session({
 }));
 
 
-// app.use(passport.authenticate('session'));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.authenticate('session'));
+app.use(passport.initialize());
+app.use(passport.session());
 
-// connectPassport();
+connectPassport();
 
 app.use('/api', userRoute);
 
-// app.use(urlencoded({
-//     extended: true
-// }));
+app.use(urlencoded({
+    extended: true
+}));
 
 // app.use('/api', orderRoute);
 // app.use('/api', message);
