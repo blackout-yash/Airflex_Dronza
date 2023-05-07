@@ -34,6 +34,8 @@ app.enable("trust proxy");
 //     next();
 // });
 
+import MongoStore from 'connect-mongo';
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -46,6 +48,7 @@ app.use(session({
     //     httpOnly: true,
     //     sameSite: "none",
     // }
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     cookie: {
         secure: true,
         sameSite: "none",
