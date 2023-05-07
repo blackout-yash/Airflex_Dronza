@@ -11,9 +11,19 @@ router.get('/googlelogin', passport.authenticate('google', {
 
 router.get('/login',
     passport.authenticate('google', {
-        successRedirect: "http://localhost:3000"
+        successRedirect: "/profile"
     })
 )
+
+app.get('/profile', (req, res) => {
+    // Access user information attached to req object
+    const user = req.user;
+    console.log("first", user);
+    res.json({
+        user: user
+    });
+    res.redirect("http://localhost:3000");
+});
 
 router.get('/me', isAuthenticated, myProfile)
 router.get('/logout', logout)
