@@ -16,7 +16,7 @@ router.get('/googlelogin', (req, res, next) => {
         sameSite: 'none',
         secure: true
     });
-    res.redirect('http://localhost:3000');
+    // res.redirect('http://localhost:3000');
     res.json({
         message: "cookie saved"
     })
