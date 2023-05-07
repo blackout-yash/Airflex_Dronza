@@ -12,14 +12,12 @@ export const connectPassport = () => {
             googleId: profile.id,
         })
 
-        console.log("first", user);
         if (!user) {
             const newUser = await User.create({
                 googleId: profile.id,
                 name: profile.displayName,
                 photo: profile.photos[0].value
             })
-            console.log("sec", newUser);
             return done(null, newUser)
         } else {
             return done(null, user)
@@ -27,6 +25,9 @@ export const connectPassport = () => {
     }))
 
     passport.serializeUser((user, done) => {
+        console.log(user)
+        // console.log(userone.id)
+        done(null, user.id)
         done(null, user.id)
     })
 
