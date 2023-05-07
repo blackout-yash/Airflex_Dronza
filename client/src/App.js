@@ -129,7 +129,11 @@ function App() {
   const handle1 = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.get(`${server}/googlelogin`, {
+      window.open(`${server}/googlelogin`, "_self");
+      // const data = await axios.get(`${server}/googlelogin`, {
+      //   withCredentials: true
+      // });
+      const data = await axios.get(`${server}/me`, {
         withCredentials: true
       });
       console.log("handler1: ", data);

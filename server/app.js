@@ -38,8 +38,8 @@ import MongoStore from 'connect-mongo';
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    // resave: false,
+    // saveUninitialized: false,
     // cookie: {
     //     // secure: process.env.NODE_ENV === "development" ? false : true,
     //     // httpOnly: process.env.NODE_ENV === "development" ? false : true,
@@ -48,12 +48,22 @@ app.use(session({
     //     httpOnly: true,
     //     sameSite: "none",
     // }
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+    // store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+    // cookie: {
+    //     secure: true,
+    //     sameSite: "none",
+    //     httpOnly: true,
+    //     expires: 24 * 60 * 60 * 1000
+    // }
+
+    resave: false,
+    saveUninitialized: true,
+    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+    name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
     cookie: {
-        secure: true,
-        sameSite: "none",
-        httpOnly: true,
-        expires: 24 * 60 * 60 * 1000
+        secure: true, // required for cookies to work on HTTPS
+        httpOnly: false,
+        sameSite: 'none'
     }
 }));
 

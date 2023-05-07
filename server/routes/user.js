@@ -24,7 +24,7 @@ router.get('/googlelogin', passport.authenticate('google', {
 
 router.get('/me', (req, res) => {
     // const token = req.cookies['connect.sid'];
-    const token = req.cookies['googletoken'];
+    const token = req.cookies['MyCoolWebAppCookieName'];
     if (!token) {
         res.status(404).json({
             success: false,
@@ -42,20 +42,21 @@ router.get('/logout', logout)
 
 router.get('/login',
     passport.authenticate('google',
-        // {
-        //     successRedirect: "http://localhost:3000"
-        // }
-    ), (req, res, next) => {
-        res.cookie("googletoken", "jdjdhjd", {
-            expires: new Date(Date.now() + 128986400),
-            httpOnly: true,
-            sameSite: 'none',
-            secure: true
-        });
-        res.redirect('http://localhost:3000');
-        //
-        next();
-    }
+        {
+            successRedirect: "http://localhost:3000"
+        }
+    )
+    // , (req, res, next) => {
+    //     res.cookie("googletoken", "jdjdhjd", {
+    //         expires: new Date(Date.now() + 128986400),
+    //         httpOnly: true,
+    //         sameSite: 'none',
+    //         secure: true
+    //     });
+    //     res.redirect('http://localhost:3000');
+    //     //
+    //     next();
+    // }
 )
 
 // router.get("/me", (req, res) => {
