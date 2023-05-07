@@ -15,7 +15,7 @@ router.get('/login',
     })
 )
 
-app.get('/profile', (req, res) => {
+router.get('/profile', (req, res) => {
     // Access user information attached to req object
     const user = req.user;
     console.log("first", user);
