@@ -5,7 +5,6 @@ export const isAuthenticated = (req, res, next) => {
     if (!token) {
         return next(new errorHandler('Not logged in', 401))
     }
-    next()
 }
 
 export const authorizeAdmin = (req, res, next) => {

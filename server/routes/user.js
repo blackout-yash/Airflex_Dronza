@@ -16,16 +16,11 @@ router.get('/login',
 )
 
 router.get('/profile', (req, res) => {
-    // Access user information attached to req object
-    // res.json({
-    //     mess: "hehe",
-    // })
     const user = req.user;
-    console.log("first", user);
     res.json({
-        mess: "kuch",
-        user: user
-    });
+        mess: user
+    })
+    // localStorage.setItem("shippingInfo", JSON.stringify(user));
     // res.redirect("http://localhost:3000");
 });
 
