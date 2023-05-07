@@ -23,8 +23,8 @@ router.get('/googlelogin', passport.authenticate('google', {
 // })
 
 router.get('/me', (req, res) => {
-    // const token = req.cookies['connect.sid'];
-    const token = req.cookies['MyCoolWebAppCookieName'];
+    const token = req.cookies['connect.sid'];
+    // const token = req.cookies['MyCoolWebAppCookieName'];
     if (!token) {
         res.status(404).json({
             success: false,

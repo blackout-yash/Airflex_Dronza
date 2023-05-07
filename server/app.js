@@ -23,7 +23,7 @@ app.use(cors({
     origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE"]
 }));
-app.enable("trust proxy");
+// app.enable("trust proxy");
 
 // app.use(function (req, res, next) {
 //     if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
@@ -37,7 +37,6 @@ app.enable("trust proxy");
 import MongoStore from 'connect-mongo';
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
     // resave: false,
     // saveUninitialized: false,
     // cookie: {
@@ -53,13 +52,15 @@ app.use(session({
     //     expires: 24 * 60 * 60 * 1000
     // }
 
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
-    name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
+    // name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     cookie: {
-        secure: true, // required for cookies to work on HTTPS
-        httpOnly: false,
+        secure: true,
+        httpOnly: true,
         sameSite: 'none'
     }
 }));
