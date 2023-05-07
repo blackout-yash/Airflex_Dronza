@@ -21,7 +21,7 @@ router.get('/googlelogin', (req, res, next) => {
     })
 })
 
-router.get('/me', () => {
+router.get('/me', (req, res) => {
     const token = req.cookies['connect.sid'];
     if (!token) {
         res.status(404).json({
