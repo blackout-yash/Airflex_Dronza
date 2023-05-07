@@ -8,6 +8,7 @@ const Login = () => {
     const [show, setShow] = useState(false);
     const loginHandler = () => {
         window.open(`${server}/googlelogin`, "_self");
+        // window.location.reload();
     }
 
     const options = {

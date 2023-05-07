@@ -12,12 +12,14 @@ export const connectPassport = () => {
             googleId: profile.id,
         })
 
+        console.log("first", user);
         if (!user) {
             const newUser = await User.create({
                 googleId: profile.id,
                 name: profile.displayName,
                 photo: profile.photos[0].value
             })
+            console.log("sec", newUser);
             return done(null, newUser)
         } else {
             return done(null, user)
