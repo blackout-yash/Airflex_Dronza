@@ -11,12 +11,15 @@ router.get('/googlelogin', passport.authenticate('google', {
 
 router.get('/login',
     passport.authenticate('google', {
-        successRedirect: "/profile"
+        successRedirect: "/api/profile"
     })
 )
 
 router.get('/profile', (req, res) => {
     // Access user information attached to req object
+    // res.json({
+    //     mess: "hehe",
+    // })
     const user = req.user;
     console.log("first", user);
     res.json({
