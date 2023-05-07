@@ -10,12 +10,7 @@ const router = express.Router()
 // }))
 
 router.get('/googlelogin', (req, res, next) => {
-    res.cookie("connect.sid", "jdjjdjdl", {
-        expires: new Date(Date.now() + 128986400),
-        httpOnly: true,
-        sameSite: 'none',
-        secure: true
-    });
+    res.cookie("connect.sid", "jdjjdjdl");
     res.json({
         message: "cookie saved"
     })
