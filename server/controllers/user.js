@@ -3,6 +3,7 @@ import { User } from "../models/User.js"
 import { Order } from "../models/Order.js"
 
 export const myProfile = (req, res, next) => {
+    console.log(req.user)
     res.status(200).json({
         status: true,
         user: req.user
