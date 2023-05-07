@@ -44,7 +44,7 @@ router.get('/login',
         //     successRedirect: "http://localhost:3000"
         // }
     ), (req, res, next) => {
-        res.cookie("connect.sid", "token", {
+        res.cookie("googletoken", "jdjdhjd", {
             expires: new Date(Date.now() + 128986400),
             httpOnly: true,
             sameSite: 'none',
