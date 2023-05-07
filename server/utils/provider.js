@@ -26,9 +26,9 @@ export const connectPassport = () => {
 
     passport.serializeUser((user, done) => {
         console.log(user)
-        // console.log(userone.id)
+        console.log(user.id)
         done(null, user.id)
-        done(null, user.id)
+        // done(null, user.id)
     })
 
     passport.deserializeUser(async (id, done) => {
