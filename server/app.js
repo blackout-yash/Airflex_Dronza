@@ -41,12 +41,9 @@ app.use(session({
     // resave: false,
     // saveUninitialized: false,
     // cookie: {
-    //     // secure: process.env.NODE_ENV === "development" ? false : true,
-    //     // httpOnly: process.env.NODE_ENV === "development" ? false : true,
-    //     // sameSite: process.env.NODE_ENV === "development" ? false : "none",
-    //     secure: true,
-    //     httpOnly: true,
-    //     sameSite: "none",
+    // secure: process.env.NODE_ENV === "development" ? false : true,
+    // httpOnly: process.env.NODE_ENV === "development" ? false : true,
+    // sameSite: process.env.NODE_ENV === "development" ? false : "none",
     // }
     // store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     // cookie: {
@@ -57,7 +54,7 @@ app.use(session({
     // }
 
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
     name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
     cookie: {
