@@ -23,9 +23,10 @@ router.get('/profile', (req, res) => {
     const user = req.user;
     console.log("first", user);
     res.json({
+        mess: "kuch",
         user: user
     });
-    res.redirect("http://localhost:3000");
+    // res.redirect("http://localhost:3000");
 });
 
 router.get('/me', isAuthenticated, myProfile)
