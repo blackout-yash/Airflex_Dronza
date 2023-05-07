@@ -1,7 +1,7 @@
 import { asyncError } from '../middlewares/errorMiddleware.js'
 import { Order } from '../models/Order.js'
 import errorHandler from '../utils/errorHandler.js'
-// import { instance } from '../server.js'
+import { instance } from '../server.js'
 import crypto from 'crypto'
 import { Payment } from '../models/Payment.js'
 

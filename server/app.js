@@ -14,11 +14,15 @@ import MongoStore from 'connect-mongo';
 const app = express();
 export default app
 
-app.use(cookieParser());
 dotenv.config({
     path: './config/config.env'
 })
+
+app.use(cookieParser());
 app.use(express.json());
+app.use(urlencoded({
+    extended: true
+}));
 
 app.use(cors({
     credentials: true,
@@ -47,12 +51,7 @@ app.use(passport.session());
 connectPassport();
 
 app.use('/api', userRoute);
-
-app.use(urlencoded({
-    extended: true
-}));
-
-// app.use('/api', orderRoute);
-// app.use('/api', message);
+app.use('/api', orderRoute);
+app.use('/api', message);
 
 app.use(errorMiddleware);
