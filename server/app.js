@@ -30,87 +30,88 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
-// app.use(session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     proxy: true,
-//     store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-//     // cookie: {
-//     //     secure: process.env.NODE_ENV === "development" ? false : true,
-//     //     httpOnly: process.env.NODE_ENV === "development" ? false : true,
-//     //     sameSite: process.env.NODE_ENV === "development" ? false : "none",
-//     // }
-// }));
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    proxy: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+    cookie: {
+        secure: process.env.NODE_ENV === "development" ? false : true,
+        httpOnly: process.env.NODE_ENV === "development" ? false : true,
+        sameSite: process.env.NODE_ENV === "development" ? false : "none",
+    }
+}));
 
 // 
 // app.use(passport.authenticate('session'));
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-// connectPassport();
-
-app.set("trust proxy", 1);
-
-app.use(
-    session({
-        secret: "secretcode",
-        resave: true,
-        saveUninitialized: true,
-        cookie: {
-            sameSite: "none",
-            secure: true,
-            maxAge: 1000 * 60 * 60 * 24 * 7 // One Week
-        }
-    }))
-
-
-import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
-import { User } from './models/User.js'
-
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser((user, done) => {
-    return done(null, user._id);
-});
+connectPassport();
 
-passport.deserializeUser((id, done) => {
-    User.findById(id, (err, doc) => {
-        // Whatever we return goes to the client and binds to the req.user property
-        console.log(id, doc);
-        return done(null, doc);
-    })
-})
+// app.set("trust proxy", 1);
+
+// app.use(
+//     session({
+//         secret: "secretcode",
+//         resave: true,
+//         saveUninitialized: true,
+//         cookie: {
+//             secure: process.env.NODE_ENV === "development" ? false : true,
+//             httpOnly: process.env.NODE_ENV === "development" ? false : true,
+//             sameSite: process.env.NODE_ENV === "development" ? false : "none",
+//         }
+//     }))
 
 
-passport.use(new GoogleStrategy({
-    clientID: `${process.env.GOOGLE_CLIENT_ID}`,
-    clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
-    callbackURL: `${process.env.GOOGLE_CALLBACK_URI}`
-},
-    function (_, __, profile, cb) {
+// import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
+// import { User } from './models/User.js'
 
-        User.findOne({ googleId: profile.id }, async (err, doc) => {
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-            if (err) {
-                return cb(err, null);
-            }
+// passport.serializeUser((user, done) => {
+//     return done(null, user._id);
+// });
 
-            if (!doc) {
-                const newUser = new User({
-                    googleId: profile.id,
-                    name: profile.displayName,
-                    photo: profile.photos[0].value
-                });
+// passport.deserializeUser((id, done) => {
+//     console.log(id, doc);
+//     User.findById(id, (err, doc) => {
+//         // Whatever we return goes to the client and binds to the req.user property
+//         console.log(id, doc);
+//         return done(null, doc);
+//     })
+// })
 
-                await newUser.save();
-                cb(null, newUser);
-            }
-            cb(null, doc);
-        })
 
-    }));
+// passport.use(new GoogleStrategy({
+//     clientID: `${process.env.GOOGLE_CLIENT_ID}`,
+//     clientSecret: `${process.env.GOOGLE_CLIENT_SECRET}`,
+//     callbackURL: `${process.env.GOOGLE_CALLBACK_URI}`
+// },
+//     function (_, __, profile, cb) {
+
+//         User.findOne({ googleId: profile.id }, async (err, doc) => {
+
+//             if (err) {
+//                 return cb(err, null);
+//             }
+
+//             if (!doc) {
+//                 const newUser = new User({
+//                     googleId: profile.id,
+//                     name: profile.displayName,
+//                     photo: profile.photos[0].value
+//                 });
+
+//                 await newUser.save();
+//                 cb(null, newUser);
+//             }
+//             cb(null, doc);
+//         })
+
+//     }));
 
 app.use('/api', userRoute);
 app.use('/api', orderRoute);
