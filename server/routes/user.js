@@ -15,12 +15,13 @@ router.get('/login',
     })
 )
 
-router.get('/profile', (req, res) => {
+router.get('/profile', (req, res, next) => {
     const user = req.user;
     // res.json({
     //     mess: user
     // })
     console.log(user);
+    next();
     // res.redirect("http://localhost:3000");
 }, isAuthenticated, myProfile);
 
