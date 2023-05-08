@@ -8,12 +8,17 @@ const router = express.Router()
 router.get('/googlelogin', passport.authenticate('google', { scope: ['profile'] }));
 
 router.get('/login',
-    passport.authenticate('google', { failureRedirect: 'http://localhost:3000', session: true }),
-    (req, res) =>
-        req.logIn(user, function (err) {
+    // passport.authenticate('google', { failureRedirect: 'http://localhost:3000', session: true }),
+    // (req, res) =>
+    //     req.logIn(user, function (err) {
+    //         return res.redirect('http://localhost:3000');
+    //     }));
+    passport.authenticate('local', function (err, user) {
+        req.logIn(user, function (err) { // <-- Log user in
+            console.log(user)
             return res.redirect('http://localhost:3000');
-        }));
-
+        });
+    }));
 
 // router.get('/googlelogin', passport.authenticate('google', {
 //     scope: ['profile']
