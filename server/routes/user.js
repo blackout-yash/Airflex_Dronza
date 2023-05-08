@@ -14,7 +14,13 @@ router.get('/login',
         // successRedirect: "/api/profile"
     }), (req, res) => {
         req.session.save(function (err) {
-            res.redirect('/api/profile');
+            if (err) {
+                res.json({
+                    error: err
+                })
+            } else {
+                res.redirect('/api/profile');
+            }
         });
     }
 )
