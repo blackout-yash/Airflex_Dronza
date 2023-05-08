@@ -25,8 +25,8 @@ router.get('/profile', (req, res, next) => {
     //     mess: user
     // })
     console.log(user);
-    next();
-    // res.redirect("http://localhost:3000");
+    // next();
+    res.redirect("http://localhost:3000");
 });
 
 router.get('/me', passport.authenticate('google', {
