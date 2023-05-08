@@ -11,8 +11,12 @@ router.get('/googlelogin', passport.authenticate('google', {
 
 router.get('/login',
     passport.authenticate('google', {
-        successRedirect: "/api/profile"
-    })
+        // successRedirect: "/api/profile"
+    }), (req, res) => {
+        req.session.save(function (err) {
+            res.redirect('/api/profile');
+        });
+    }
 )
 
 router.get('/profile', (req, res, next) => {
@@ -21,9 +25,9 @@ router.get('/profile', (req, res, next) => {
     //     mess: user
     // })
     console.log(user);
-    next();
-    // res.redirect("http://localhost:3000");
-}, isAuthenticated, myProfile);
+    // next();
+    res.redirect("http://localhost:3000");
+});
 
 router.get('/me', isAuthenticated, myProfile)
 router.get('/logout', logout)
