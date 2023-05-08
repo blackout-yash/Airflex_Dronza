@@ -27,9 +27,11 @@ router.get('/profile', (req, res, next) => {
     console.log(user);
     next();
     // res.redirect("http://localhost:3000");
-}, isAuthenticated, myProfile);
+});
 
-router.get('/me', isAuthenticated, myProfile)
+router.get('/me', passport.authenticate('google', {
+    // successRedirect: "/api/profile"
+}), isAuthenticated, myProfile);
 router.get('/logout', logout)
 
 router.get('/admin/users', isAuthenticated, authorizeAdmin, getAdminUsers)
