@@ -32,8 +32,8 @@ app.use(cors({
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     proxy: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     cookie: {
@@ -43,7 +43,6 @@ app.use(session({
     }
 }));
 
-// 
 // app.use(passport.authenticate('session'));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -83,7 +82,6 @@ connectPassport();
 //         return done(null, doc);
 //     })
 // })
-
 
 // passport.use(new GoogleStrategy({
 //     clientID: `${process.env.GOOGLE_CLIENT_ID}`,
