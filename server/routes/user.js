@@ -12,6 +12,7 @@ router.get('/googlelogin', passport.authenticate('google', {
 router.get('/login',
     passport.authenticate('google', {
         // successRedirect: "/api/profile"
+        session: true
     }), (req, res) => {
         req.session.save(function (err) {
             if (err) {
