@@ -21,8 +21,8 @@ router.get('/profile', (req, res) => {
     //     mess: user
     // })
     console.log(user);
-    res.redirect("http://localhost:3000");
-});
+    // res.redirect("http://localhost:3000");
+}, isAuthenticated, myProfile);
 
 router.get('/me', isAuthenticated, myProfile)
 router.get('/logout', logout)
