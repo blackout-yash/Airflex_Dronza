@@ -5,38 +5,46 @@ import { authorizeAdmin, isAuthenticated } from '../middlewares/auth.js'
 
 const router = express.Router()
 
-router.get('/googlelogin', passport.authenticate('google', {
-    scope: ['profile']
-}))
+router.get('/googlelogin', passport.authenticate('google', { scope: ['profile'] }));
 
 router.get('/login',
-    passport.authenticate('google', {
-        // successRedirect: "/api/profile"
-        session: true
-    }), (req, res) => {
-        req.session.save(function (err) {
-            if (err) {
-                res.json({
-                    error: err
-                })
-            } else {
-                res.redirect('/api/profile');
-            }
-        });
-    }
-)
+    passport.authenticate('google', { failureRedirect: 'http://localhost:3000', session: true }),
+    function (req, res) {
+        res.redirect('http://localhost:3000');
+    });
 
-router.get('/profile', (req, res, next) => {
-    const user = req.user;
-    // res.json({
-    //     mess: user
-    // })
-    req.session.user = user;
-    console.log(user);
-    console.log(req.session.user)
-    // next();
-    res.redirect("http://localhost:3000");
-});
+// router.get('/googlelogin', passport.authenticate('google', {
+//     scope: ['profile']
+// }))
+
+// router.get('/login',
+//     passport.authenticate('google', {
+//         // successRedirect: "/api/profile"
+//         session: true
+//     }), (req, res) => {
+//         req.session.save(function (err) {
+//             if (err) {
+//                 res.json({
+//                     error: err
+//                 })
+//             } else {
+//                 res.redirect('/api/profile');
+//             }
+//         });
+//     }
+// )
+
+// router.get('/profile', (req, res, next) => {
+//     const user = req.user;
+//     // res.json({
+//     //     mess: user
+//     // })
+//     req.session.user = user;
+//     console.log(user);
+//     console.log(req.session.user)
+//     // next();
+//     res.redirect("http://localhost:3000");
+// });
 
 router.get('/me', isAuthenticated, myProfile);
 
