@@ -17,11 +17,11 @@ router.get('/login',
 
 router.get('/profile', (req, res) => {
     const user = req.user;
-    res.json({
-        mess: user
-    })
-    // localStorage.setItem("shippingInfo", JSON.stringify(user));
-    // res.redirect("http://localhost:3000");
+    // res.json({
+    //     mess: user
+    // })
+    console.log(user);
+    res.redirect("http://localhost:3000");
 });
 
 router.get('/me', isAuthenticated, myProfile)

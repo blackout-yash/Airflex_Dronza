@@ -32,7 +32,7 @@ app.use(cors({
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     proxy: true,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
@@ -44,7 +44,7 @@ app.use(session({
 }));
 
 // 
-app.use(passport.authenticate('session'));
+// app.use(passport.authenticate('session'));
 app.use(passport.initialize());
 app.use(passport.session());
 
