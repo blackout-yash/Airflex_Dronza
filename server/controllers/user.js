@@ -3,7 +3,7 @@ import { User } from "../models/User.js"
 import { Order } from "../models/Order.js"
 
 export const myProfile = (req, res, next) => {
-    console.log("profile", res.session.user)
+    console.log("profile", req.session.user)
 
     res.status(200).json({
         status: true,
