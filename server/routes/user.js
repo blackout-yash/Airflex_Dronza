@@ -24,6 +24,7 @@ router.get('/profile', (req, res, next) => {
     // res.json({
     //     mess: user
     // })
+    res.locals.user = req.user;
     console.log(user);
     // next();
     res.redirect("http://localhost:3000");

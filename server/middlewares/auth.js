@@ -1,7 +1,7 @@
 import errorHandler from '../utils/errorHandler.js'
 
 export const isAuthenticated = (req, res, next) => {
-    console.log("auth", req.user)
+    console.log("auth", res.locals.user)
     console.log(req.isAuthenticated());
     const token = req.cookies['connect.sid'];
     if (!token) {
