@@ -9,9 +9,11 @@ router.get('/googlelogin', passport.authenticate('google', { scope: ['profile'] 
 
 router.get('/login',
     passport.authenticate('google', { failureRedirect: 'http://localhost:3000', session: true }),
-    function (req, res) {
-        res.redirect('http://localhost:3000');
-    });
+    (req, res) =>
+        req.logIn(user, function (err) { // <-- Log user in
+            return res.redirect('http://localhost:3000');
+        }));
+
 
 // router.get('/googlelogin', passport.authenticate('google', {
 //     scope: ['profile']
