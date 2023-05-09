@@ -45,10 +45,26 @@ app.use(session({
 }));
 
 // app.use(passport.authenticate('session'));
+connectPassport();
+
+app.use((req, res, next) => {
+    console.log("first");
+    console.log(req.session);
+    console.log(req.user);
+    next();
+})
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-connectPassport();
+app.use((req, res, next) => {
+    console.log("sec");
+    console.log(req.session);
+    console.log(req.user);
+    next();
+})
+
+
 
 // app.set("trust proxy", 1);
 
