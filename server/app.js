@@ -26,7 +26,8 @@ app.use(urlencoded({
 
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://accounts.google.com"],
     methods: ["GET", "POST", "PUT", "DELETE"]
 }));
 
