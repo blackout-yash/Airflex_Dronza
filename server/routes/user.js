@@ -49,7 +49,7 @@ router.get('/login',
 //     res.redirect("http://localhost:3000");
 // });
 
-router.get('/me', passport.authenticate('google'), isAuthenticated, myProfile);
+router.get('/me', passport.authenticate('google', { scope: ['profile'] }), isAuthenticated, myProfile);
 
 router.get('/logout', logout)
 
