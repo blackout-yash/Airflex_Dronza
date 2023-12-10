@@ -12,14 +12,17 @@ const Menu = () => {
         switch (itemNum) {
             case 1:
                 dispatch({ type: "drone1Increment" });
+                dispatch({ type: "calculatePrice" });
                 toast.success("Added to Cart");
                 break;
             case 2:
                 dispatch({ type: "drone2Increment" });
+                dispatch({ type: "calculatePrice" });
                 toast.success("Added to Cart");
                 break;
             case 3:
                 dispatch({ type: "drone3Increment" });
+                dispatch({ type: "calculatePrice" });
                 toast.success("Added to Cart");
                 break;
             default:

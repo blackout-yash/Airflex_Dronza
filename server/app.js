@@ -24,45 +24,54 @@ app.use(urlencoded({
     extended: true
 }));
 
-app.use(cors({
-    credentials: true,
-    // origin: "http://localhost:3000",
-    origin: ["http://localhost:3000", "https://accounts.google.com"],
-    methods: ["GET", "POST", "PUT", "DELETE"]
-}));
+app.use(function (req, res, next) {
+    if (req.headers.origin) res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    else res.setHeader('Access-Control-Allow-Origin', "*");
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+    next();
+});
 
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    proxy: true,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-    cookie: {
-        secure: process.env.NODE_ENV === "development" ? false : true,
-        httpOnly: process.env.NODE_ENV === "development" ? false : true,
-        sameSite: process.env.NODE_ENV === "development" ? false : "none",
-    }
-}));
+// app.use(cors({
+//     credentials: true,
+//     // origin: "http://localhost:3000",
+//     origin: ["http://localhost:3000", "https://accounts.google.com"],
+//     methods: ["GET", "POST", "PUT", "DELETE"]
+// }));
+
+// app.use(session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: true,
+//     proxy: true,
+//     store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+//     cookie: {
+//         secure: process.env.NODE_ENV === "development" ? false : true,
+//         httpOnly: process.env.NODE_ENV === "development" ? false : true,
+//         sameSite: process.env.NODE_ENV === "development" ? false : "none",
+//     }
+// }));
 
 // app.use(passport.authenticate('session'));
 connectPassport();
 
-app.use((req, res, next) => {
-    console.log("first");
-    console.log(req.session);
-    console.log(req.user);
-    next();
-})
+// app.use((req, res, next) => {
+//     // console.log("first");
+//     // console.log(req.session);
+//     // console.log(req.user);
+//     next();
+// })
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-    console.log("sec");
-    console.log(req.session);
-    console.log(req.user);
-    next();
-})
+// app.use((req, res, next) => {
+//     // console.log("sec");
+//     // console.log(req.session);
+//     // console.log(req.user);
+//     next();
+// })
 
 
 

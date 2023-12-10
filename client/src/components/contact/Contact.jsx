@@ -47,7 +47,8 @@ const Contact = () => {
 
     const option3 = {
         initial: { x: "50%", y: "-100vh", opacity: 0 },
-        animate: { x: "50%", y: "-50%", opacity: 1 }, transition: { delay: 0.4 }
+        animate: { x: "50%", y: "-50%", opacity: 1 },
+        transition: { delay: 0.4 }
     }
 
     return (

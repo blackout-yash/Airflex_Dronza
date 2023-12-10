@@ -5,7 +5,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from 'react';
 
 const Login = () => {
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
     const loginHandler = () => {
         window.open(`${server}/googlelogin`, "_self");
     }

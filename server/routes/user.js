@@ -10,7 +10,10 @@ router.get('/googlelogin', passport.authenticate('google', { scope: ['profile'] 
 router.get('/login',
     passport.authenticate('google', {
         failureRedirect: 'http://localhost:4000',
-        session: true
+        // session: true,
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true
     }), (req, res) => {
         return res.redirect('http://localhost:3000');
     });
