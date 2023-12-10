@@ -46,11 +46,14 @@ app.use(session({
     saveUninitialized: true,
     // proxy: true,
     // store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-    // cookie: {
-    //     secure: process.env.NODE_ENV === "development" ? false : true,
-    //     httpOnly: process.env.NODE_ENV === "development" ? false : true,
-    //     sameSite: process.env.NODE_ENV === "development" ? false : "none",
-    // }
+    cookie: {
+        // secure: process.env.NODE_ENV === "development" ? false : true,
+        // httpOnly: process.env.NODE_ENV === "development" ? false : true,
+        // sameSite: process.env.NODE_ENV === "development" ? false : "none",
+        secure: true,
+        httpOnly: true,
+        sameSite: "none",
+    }
 }));
 
 app.use(passport.authenticate('session'));
