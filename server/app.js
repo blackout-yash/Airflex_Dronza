@@ -40,20 +40,20 @@ app.use(function (req, res, next) {
 //     methods: ["GET", "POST", "PUT", "DELETE"]
 // }));
 
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    proxy: true,
-    // store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
-    cookie: {
-        secure: process.env.NODE_ENV === "development" ? false : true,
-        httpOnly: process.env.NODE_ENV === "development" ? false : true,
-        sameSite: process.env.NODE_ENV === "development" ? false : "none",
-    }
-}));
+// app.use(session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: true,
+//     proxy: true,
+//     // store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
+//     cookie: {
+//         secure: process.env.NODE_ENV === "development" ? false : true,
+//         httpOnly: process.env.NODE_ENV === "development" ? false : true,
+//         sameSite: process.env.NODE_ENV === "development" ? false : "none",
+//     }
+// }));
 
-// app.use(passport.authenticate('session'));
+app.use(passport.authenticate('session'));
 connectPassport();
 
 // app.use((req, res, next) => {
